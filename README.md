@@ -1,16 +1,8 @@
-# mental_health_care
+# Calmi (Calm + I)
+나를 위한 차분한 공간이라는 뜻의 의미
 
-A new Flutter project.
 
-## Getting Started
+![image](https://github.com/user-attachments/assets/01f8d737-a002-4ab7-bedd-d2b6e6fda01f)
+![image](https://github.com/user-attachments/assets/defa7599-97ac-4af1-8007-9cd0bd532b6f)
+![image](https://github.com/user-attachments/assets/3f1ac51f-9a80-4a19-8bb0-0263f65749b1)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
