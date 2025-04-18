@@ -10,9 +10,13 @@ class HaruHaruRepositoryImpl implements HaruHaruRepository {
 
   @override
   Future<Result<List<HaruHaruModel>>> getHaruList() async {
-    final file = File(path);
-    final fileContent = await file.readAsString();
-    final json = jsonDecode(fileContent);
-    return throw Exception();
+    try {
+      final file = File(path);
+      final fileContent = await file.readAsString();
+      final json = jsonDecode(fileContent);
+      return Result.success(json.map((e) => HaruHaruModel.fromJson(e)));
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 }
