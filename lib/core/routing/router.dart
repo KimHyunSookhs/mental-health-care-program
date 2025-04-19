@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mental_health_care/core/di/di_setup.dart';
 import 'package:mental_health_care/data/data_source/haru_data_source.dart';
-import 'package:mental_health_care/data/data_source/haru_data_source_impl.dart';
 import 'package:mental_health_care/data/repository/haru_repository_impl.dart';
 import 'package:mental_health_care/domain/repository/haru_repository.dart';
 import 'package:mental_health_care/presentation/haru/haru_screen.dart';
@@ -12,10 +12,7 @@ import 'routes.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
-HaruViewModel haruViewModel = HaruViewModel(haruRepository: haruRepository);
-HaruRepository haruRepository =
-    HaruRepositoryImpl(haruDataSource: haruDataSource);
-HaruDataSource haruDataSource = HaruDataSourceImpl();
+HaruViewModel haruViewModel = HaruViewModel(haruRepository: getIt());
 
 final router = GoRouter(initialLocation: Routes.haruScreen, routes: [
   GoRoute(
