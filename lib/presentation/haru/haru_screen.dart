@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mental_health_care/core/result/result.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
 import 'package:mental_health_care/presentation/component/haru_card.dart';
+import 'package:mental_health_care/presentation/component/weekend_circle.dart';
 import 'package:mental_health_care/presentation/haru/haru_view_model.dart';
 
 class HaruScreen extends StatefulWidget {
@@ -24,47 +26,67 @@ class _HaruScreenState extends State<HaruScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('하루하루'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('하루하루'),
+            Text(
+              DateFormat("yyyy.MM.dd").format(DateTime.now()),
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400),
+            )
+          ],
+        ),
       ),
       body: SafeArea(
-          child: ListenableBuilder(
-              listenable: widget.viewModel,
-              builder: (context, child) {
-                if (widget.viewModel.state.isLoading) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                final haru = widget.viewModel.state.haru;
-                return Container(
-                  color: ColorStyle.lightGrey,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 15),
-                    child: switch (haru) {
-                      Success(:final data) => Container(
+          child: Container(
+        color: ColorStyle.lightGrey,
+        child: ListenableBuilder(
+            listenable: widget.viewModel,
+            builder: (context, child) {
+              if (widget.viewModel.state.isLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              final haru = widget.viewModel.state.haru;
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                child: switch (haru) {
+                  Success(:final data) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 15),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '오늘의 긍정적인 행동',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    '작은 실천으로 시작하는 행복한 하루',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 12,
-                                  ),
-                                  Expanded(
-                                    child: ListView.separated(
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 1,
+                                    spreadRadius: 0.5)
+                              ]),
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 15),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '오늘의 긍정적인 행동',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '작은 실천으로 시작하는 행복한 하루',
+                                      style: TextStyle(fontSize: 14),
+                                    ),
+                                    SizedBox(
+                                      height: 12,
+                                    ),
+                                    ListView.separated(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index) {
                                           final haru = data[index];
                                           return HaruCard(haru: haru);
@@ -74,17 +96,31 @@ class _HaruScreenState extends State<HaruScreen> {
                                               height: 10,
                                             ),
                                         itemCount: data.length),
-                                  ),
-                                ]),
+                                  ]),
+                            ),
                           ),
                         ),
-                      Error(:final e) => Center(
-                          child: Text('에러 발생: ${e.toString()}'),
+                        SizedBox(
+                          height: 40,
                         ),
-                    },
-                  ),
-                );
-              })),
+                        Text(
+                          '이번 주 실천률',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        WeekendCircle(),
+                      ],
+                    ),
+                  Error(:final e) => Center(
+                      child: Text('에러 발생: ${e.toString()}'),
+                    ),
+                },
+              );
+            }),
+      )),
     );
   }
 }

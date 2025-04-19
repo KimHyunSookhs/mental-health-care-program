@@ -12,9 +12,10 @@ class HaruCard extends StatefulWidget {
 }
 
 class _HaruCardState extends State<HaruCard> {
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,7 +36,8 @@ class _HaruCardState extends State<HaruCard> {
                         isChecked = value!;
                       });
                     },
-                    activeColor: Colors.grey,
+                    activeColor: Colors.black38,
+                    side: BorderSide(color: Colors.black),
                     checkColor: Colors.white,
                   ),
                   Expanded(
