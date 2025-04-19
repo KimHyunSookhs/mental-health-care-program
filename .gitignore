@@ -47,4 +47,3 @@ app.*.map.json
 # Ignore Freezed & JsonSerializable generated files
 *.freezed.dart
 *.g.dart
-*.envit
