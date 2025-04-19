@@ -14,7 +14,6 @@ class HaruViewModel with ChangeNotifier {
 
   HaruState get state => _state;
 
-
   Future<void> pickHaru() async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
@@ -22,7 +21,6 @@ class HaruViewModel with ChangeNotifier {
       final result = await _randomPickUseCase.execute();
       switch (result) {
         case Success(data: final haru):
-          print('데이터 가져오기 성공: $haru');
           _state = state.copyWith(
               isLoading: false, haru: Result.success(haru), errorMessage: '');
           break;
