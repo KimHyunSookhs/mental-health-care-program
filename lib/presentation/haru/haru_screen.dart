@@ -17,7 +17,7 @@ class _HaruScreenState extends State<HaruScreen> {
   @override
   void initState() {
     super.initState();
-    widget.viewModel.fetchHaru();
+    widget.viewModel.pickHaru();
   }
 
   @override
@@ -40,31 +40,44 @@ class _HaruScreenState extends State<HaruScreen> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 15),
                     child: switch (haru) {
-                      Success(:final data) => Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '오늘의 긍정적인 행동',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '작은 실천으로 시작하는 행복한 하루',
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              Expanded(
-                                child: ListView.separated(
-                                    itemBuilder: (context, index) {
-                                      final haru = data[index];
-                                      return HaruCard(haru: haru);
-                                    },
-                                    separatorBuilder: (context, index) =>
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                    itemCount: data.length),
-                              ),
-                            ]),
+                      Success(:final data) => Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 15),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '오늘의 긍정적인 행동',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    '작은 실천으로 시작하는 행복한 하루',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Expanded(
+                                    child: ListView.separated(
+                                        itemBuilder: (context, index) {
+                                          final haru = data[index];
+                                          return HaruCard(haru: haru);
+                                        },
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                        itemCount: data.length),
+                                  ),
+                                ]),
+                          ),
+                        ),
                       Error(:final e) => Center(
                           child: Text('에러 발생: ${e.toString()}'),
                         ),

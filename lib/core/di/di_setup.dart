@@ -4,6 +4,7 @@ import 'package:mental_health_care/data/data_source/haru_data_source_impl.dart';
 import 'package:mental_health_care/data/repository/haru_repository_impl.dart';
 import 'package:mental_health_care/domain/repository/haru_repository.dart';
 import 'package:mental_health_care/domain/use_case/get_haru_use_case.dart';
+import 'package:mental_health_care/domain/use_case/random_pick_use_case.dart';
 import 'package:mental_health_care/presentation/haru/haru_view_model.dart';
 
 final getIt = GetIt.instance;
@@ -18,8 +19,9 @@ void diSetUp() {
 
   //UseCase
   getIt.registerSingleton(GetHaruUseCase(haruRepository: getIt()));
+  getIt.registerSingleton(RandomPickUseCase(haruRepository: getIt()));
 
   //ViewModel
   getIt.registerFactory<HaruViewModel>(
-      () => HaruViewModel(haruRepository: getIt()));
+      () => HaruViewModel(randomPickUseCase: getIt()));
 }

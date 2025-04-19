@@ -1,25 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mental_health_care/core/result/result.dart';
-import 'package:mental_health_care/domain/repository/haru_repository.dart';
+import 'package:mental_health_care/domain/use_case/random_pick_use_case.dart';
 import 'package:mental_health_care/presentation/haru/haru_state.dart';
 
 class HaruViewModel with ChangeNotifier {
-  final HaruRepository _haruRepository;
+  final RandomPickUseCase _randomPickUseCase;
 
   HaruViewModel({
-    required HaruRepository haruRepository,
-  }) : _haruRepository = haruRepository;
+    required RandomPickUseCase randomPickUseCase,
+  }) : _randomPickUseCase = randomPickUseCase;
 
   HaruState _state = HaruState();
 
   HaruState get state => _state;
 
-  Future<void> fetchHaru() async {
+
+  Future<void> pickHaru() async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
-
     try {
-      final result = await _haruRepository.getHaru();
+      final result = await _randomPickUseCase.execute();
       switch (result) {
         case Success(data: final haru):
           print('데이터 가져오기 성공: $haru');
