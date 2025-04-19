@@ -16,7 +16,7 @@ class GetHaruUseCase {
     final haru = (haruResult as Success).data;
 
     return switch (haruResult) {
-      Success(:final data) => Result.success(data),
+      Success() => Result.success(haru),
       Error(:final e) => Result.error(e),
     };
   }
