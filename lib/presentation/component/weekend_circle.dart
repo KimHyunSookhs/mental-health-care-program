@@ -49,7 +49,7 @@ class _WeekendCircleState extends State<WeekendCircle> {
             style: TextStyle(color: Colors.black, fontSize: 16),
           ),
         ),
-        const SizedBox(height: 4), // 간격 살짝
+        const SizedBox(height: 4),
         Container(
           width: 10,
           height: 10,
@@ -64,12 +64,21 @@ class _WeekendCircleState extends State<WeekendCircle> {
 
   Widget _buildButton() {
     return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            side: BorderSide(color: Colors.black38)),
         onPressed: () {
           setState(() {
             int todayIndex = getTodayIndex();
             isCompletedList[todayIndex] = !isCompletedList[todayIndex];
           });
         },
-        child: Text('하루 완료'));
+        child: Text(
+          '하루 완료',
+          style: TextStyle(color: Colors.black, fontSize: 14),
+        ));
   }
 }
