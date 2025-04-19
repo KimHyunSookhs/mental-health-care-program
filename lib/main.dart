@@ -14,6 +14,7 @@ class Calmi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: '42dotSans'),
       debugShowCheckedModeBanner: false,
       routerConfig: router,
     );
