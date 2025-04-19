@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_care/core/result/result.dart';
+import 'package:mental_health_care/presentation/component/haru_card.dart';
 import 'package:mental_health_care/presentation/haru/haru_view_model.dart';
 
 class HaruScreen extends StatefulWidget {
@@ -36,23 +37,25 @@ class _HaruScreenState extends State<HaruScreen> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                   child: switch (haru) {
-                    Success(:final data) => Container(
-                        color: Colors.grey,
-                        child: ListView.separated(
-                            itemBuilder: (context, index) {
-                              final haru = data[index];
-                              return ListTile(
-                                title: Text(haru.content),
-                                trailing: Checkbox(
-                                  value: haru.isChecked,
-                                  onChanged: (value) {},
-                                ),
-                              );
-                            },
-                            separatorBuilder: (context, index) =>
-                                const Divider(),
-                            itemCount: data.length),
-                      ),
+                    Success(:final data) => Column(children: [
+                        Text('오늘의 긍정적인 행동'),
+                        Text(
+                          '작은 실천으로 시작하는 행복한 하루',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Expanded(
+                          child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                final haru = data[index];
+                                return HaruCard(haru: haru);
+                              },
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                              itemCount: data.length),
+                        ),
+                      ]),
                     Error(:final e) => Center(
                         child: Text('에러 발생: ${e.toString()}'),
                       ),
