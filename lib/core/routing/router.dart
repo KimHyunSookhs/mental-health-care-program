@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mental_health_care/core/di/di_setup.dart';
+import 'package:mental_health_care/presentation/bottom_navigation_bar/bottom_navigation_bar_scaffold.dart';
 import 'package:mental_health_care/presentation/haru/haru_screen.dart';
 import 'package:mental_health_care/presentation/haru/haru_view_model.dart';
 
@@ -11,8 +12,21 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 HaruViewModel haruViewModel = HaruViewModel(randomPickUseCase: getIt());
 
-final router = GoRouter(initialLocation: Routes.haruScreen, routes: [
-  GoRoute(
-      path: Routes.haruScreen,
-      builder: (context, state) => HaruScreen(viewModel: haruViewModel))
-]);
+final router = GoRouter(
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: Routes.haruScreen,
+    routes: [
+      StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) {
+            return BottomNavigationBarScaffold(
+              child: navigationShell,
+            );
+          },
+          branches: [
+            StatefulShellBranch(routes: [
+              GoRoute(
+                  path: Routes.haruScreen,
+                  builder: (context, state) => HaruScreen(viewModel: getIt()))
+            ])
+          ])
+    ]);

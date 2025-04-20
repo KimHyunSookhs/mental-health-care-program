@@ -45,6 +45,8 @@ class _BottomNavigationBarScaffoldState
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: '하루하루'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.storefront), label: '마음창고'),
           ]),
     );
   }
