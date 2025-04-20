@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mental_health_care/presentation/component/button_styles.dart';
 
 import '../../core/routing/routes.dart';
 
@@ -43,11 +44,34 @@ class SplashScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 14),
                 ),
               ),
+              SizedBox(
+                height: 40,
+              ),
               ElevatedButton(
                   onPressed: () {
                     context.go(Routes.signUpScreen);
                   },
-                  child: Text('회원가입'))
+                  style: ButtonStyles.signInButton,
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('처음이신가요?',
+                      style: TextStyle(fontSize: 12, color: Colors.black87)),
+                  TextButton(
+                      onPressed: () {
+                        context.go(Routes.signUpScreen);
+                      },
+                      child: Text('가입하기',
+                          style: TextStyle(fontSize: 13, color: Colors.black)))
+                ],
+              )
             ],
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:mental_health_care/presentation/bottom_navigation_bar/bottom_nav
 import 'package:mental_health_care/presentation/haru/haru_screen.dart';
 import 'package:mental_health_care/presentation/haru/haru_view_model.dart';
 import 'package:mental_health_care/presentation/secret_store/secret_stroe_screen.dart';
+import 'package:mental_health_care/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:mental_health_care/presentation/signup_screen/sign_up_screen.dart';
 import 'package:mental_health_care/presentation/splashscreen/splash_screen.dart';
 
@@ -25,6 +26,9 @@ final router = GoRouter(
       GoRoute(
           path: Routes.signUpScreen,
           builder: (context, state) => SignupScreen(viewModel: getIt())),
+      GoRoute(
+          path: Routes.signInScreen,
+          builder: (context, state) => SignInScreen()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return BottomNavigationBarScaffold(
