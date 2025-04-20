@@ -1,10 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_health_care/core/di/di_setup.dart';
 
 import 'core/routing/router.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   diSetUp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(Calmi());
 }
 

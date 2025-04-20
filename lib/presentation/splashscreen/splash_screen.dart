@@ -8,6 +8,8 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: Colors.white,
+        width: double.infinity,
+        height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(

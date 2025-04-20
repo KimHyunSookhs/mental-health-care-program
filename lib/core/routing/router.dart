@@ -16,8 +16,11 @@ HaruViewModel haruViewModel = HaruViewModel(randomPickUseCase: getIt());
 
 final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: Routes.haruScreen,
+    initialLocation: Routes.splashScreen,
     routes: [
+      GoRoute(
+          path: Routes.splashScreen,
+          builder: (context, state) => const SplashScreen()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return BottomNavigationBarScaffold(
