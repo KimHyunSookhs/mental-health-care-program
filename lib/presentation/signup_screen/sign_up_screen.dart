@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mental_health_care/presentation/signup_screen/signup_view_model.dart';
+import 'package:mental_health_care/presentation/signup_screen/sign_up_view_model.dart';
 
 class SignupScreen extends StatefulWidget {
-  final SignupViewModel viewModel;
+  final SignUpViewModel viewModel;
 
   const SignupScreen({super.key, required this.viewModel});
 

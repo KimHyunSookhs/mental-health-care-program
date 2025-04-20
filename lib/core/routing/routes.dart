@@ -3,4 +3,5 @@ abstract class Routes {
   static const String bottomNavigationBar = '/bottom-navigation-bar-scaffold';
   static const String secretStoreScreen = '/secret-store-screen';
   static const String splashScreen = '/splash-screen';
+  static const String signUpScreen = '/sign-up-screen';
 }

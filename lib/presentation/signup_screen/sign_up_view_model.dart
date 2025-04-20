@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mental_health_care/domain/use_case/signup_use_case.dart';
 
-class SignupViewModel with ChangeNotifier {
+class SignUpViewModel with ChangeNotifier {
   final SignupUseCase _signupUseCase;
 
-  SignupViewModel({required SignupUseCase signupUseCase})
+  SignUpViewModel({required SignupUseCase signupUseCase})
       : _signupUseCase = signupUseCase;
 
   bool _isLoading = false;
