@@ -1,7 +1,9 @@
-abstract interface class AuthRepository {
-  Future<void> signIn(String email, String password);
+import 'package:firebase_auth/firebase_auth.dart';
 
-  Future<void> signUp(String email, String password, String nickname);
+abstract interface class AuthRepository {
+  Future<User?> signIn(String email, String password);
+
+  Future<User?> signUp(String email, String password);
 
   Future<void> signOut();
 }

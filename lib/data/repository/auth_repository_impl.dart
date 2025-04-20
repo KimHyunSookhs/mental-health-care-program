@@ -5,7 +5,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
-  Future<User?> signUp(String email, String password, String nickname) async {
+  Future<User?> signUp(String email, String password) async {
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     // UserCredential nicknameCredential = await userCredential.user?.updateDisplayName(nickname);
@@ -34,5 +34,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() async {}
+  Future<void> signOut() async {
+    _auth.signOut();
+  }
 }
