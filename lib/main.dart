@@ -6,11 +6,11 @@ import 'core/routing/router.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  diSetUp();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  diSetUp();
   runApp(Calmi());
 }
 

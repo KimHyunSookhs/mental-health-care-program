@@ -34,6 +34,14 @@ class _SignupScreenState extends State<SignupScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('회원가입'),
+          TextField(
+            controller: _emailController,
+            decoration: InputDecoration(labelText: 'Email'),
+          ),
+          TextField(
+            controller: _passwordController,
+            decoration: InputDecoration(labelText: 'PassWord'),
+          ),
           ElevatedButton(
               onPressed: () {
                 widget.viewModel
