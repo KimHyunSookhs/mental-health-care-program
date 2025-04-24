@@ -28,7 +28,9 @@ final router = GoRouter(
           builder: (context, state) => SignupScreen(viewModel: getIt())),
       GoRoute(
           path: Routes.signInScreen,
-          builder: (context, state) => SignInScreen()),
+          builder: (context, state) => SignInScreen(
+                viewModel: getIt(),
+              )),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return BottomNavigationBarScaffold(

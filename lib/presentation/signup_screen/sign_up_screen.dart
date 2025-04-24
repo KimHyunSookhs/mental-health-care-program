@@ -25,8 +25,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final ValidationForm _validationForm = ValidationForm();
 
-  FocusNode _emailFocus = FocusNode();
-  FocusNode _passwordFocus = FocusNode();
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
 
   @override
   void dispose() {
@@ -40,8 +40,6 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //키보드 올라와도 텍스트 필드 영역 온전히 보여줌
-      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -63,10 +61,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
                   SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    height: 20,
+                    height: 35,
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
