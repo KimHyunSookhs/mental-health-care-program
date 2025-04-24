@@ -5,11 +5,28 @@ class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
-  Future<User?> signUp(String email, String password) async {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    // UserCredential nicknameCredential = await userCredential.user?.updateDisplayName(nickname);
-    return userCredential.user;
+  Future<User?> signUp(String email, String password, String nickname) async {
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      User? user = userCredential.user;
+
+      // 닉네임 업데이트
+      if (user != null) {
+        await user.updateDisplayName(nickname);
+        await user.reload();
+        user = _auth.currentUser;
+      }
+
+      return user;
+    } on FirebaseAuthException catch (e) {
+      print('회원가입 실패: ${e.message}');
+      return null;
+    }
   }
 
   @override

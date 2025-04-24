@@ -6,7 +6,7 @@ class SignupUseCase {
 
   SignupUseCase({required this.authRepository});
 
-  Future<User?> execute(String email, String password) async {
-    return authRepository.signUp(email, password);
+  Future<User?> execute(String email, String password, String nickname) async {
+    return authRepository.signUp(email, password, nickname);
   }
 }

@@ -14,12 +14,12 @@ class SignUpViewModel with ChangeNotifier {
 
   String? get error => _error;
 
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(String email, String password, String nickname) async {
     _isLoading = true;
     notifyListeners();
 
     try {
-      await _signupUseCase.execute(email, password);
+      await _signupUseCase.execute(email, password, nickname);
     } catch (e) {
       _error = e.toString();
     }
