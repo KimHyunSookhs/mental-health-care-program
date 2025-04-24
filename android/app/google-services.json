@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1068238252185:android:a03879ea31566662917008",
+        "mobilesdk_app_id": "1:1068238252185:android:b59bbdb3f023e8b8917008",
         "android_client_info": {
-          "package_name": "com.example.mental_health_care"
+          "package_name": "com.mentalhealthcare"
         }
       },
       "oauth_client": [],

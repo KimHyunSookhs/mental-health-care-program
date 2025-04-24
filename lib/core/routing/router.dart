@@ -18,7 +18,8 @@ HaruViewModel haruViewModel = HaruViewModel(randomPickUseCase: getIt());
 
 final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: Routes.splashScreen,
+    // initialLocation: Routes.splashScreen,
+    initialLocation: Routes.haruScreen,
     routes: [
       GoRoute(
           path: Routes.splashScreen,

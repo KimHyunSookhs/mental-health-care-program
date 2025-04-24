@@ -4,16 +4,21 @@ import 'package:mental_health_care/data/model/haru.dart';
 
 class HaruCard extends StatefulWidget {
   final Haru haru;
+  bool isChecked;
 
-  const HaruCard({super.key, required this.haru});
+  // final VoidCallback completeMission;
 
   @override
   State<HaruCard> createState() => _HaruCardState();
+
+  HaruCard({
+    super.key,
+    required this.haru,
+    required this.isChecked,
+  });
 }
 
 class _HaruCardState extends State<HaruCard> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,10 +34,10 @@ class _HaruCardState extends State<HaruCard> {
             child: Row(
               children: [
                 Checkbox(
-                  value: isChecked,
+                  value: widget.isChecked,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked = value!;
+                      widget.isChecked = value!;
                     });
                   },
                   activeColor: Colors.black38,

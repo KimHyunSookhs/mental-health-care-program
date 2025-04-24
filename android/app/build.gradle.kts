@@ -10,7 +10,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 }
 android {
-    namespace = "com.example.mental_health_care"
+    namespace = "com.mentalhealthcare"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -25,7 +25,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.mental_health_care"
+        applicationId = "com.mentalhealthcare"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23

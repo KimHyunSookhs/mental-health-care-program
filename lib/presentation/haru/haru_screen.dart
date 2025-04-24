@@ -89,7 +89,10 @@ class _HaruScreenState extends State<HaruScreen> {
                                         physics: NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index) {
                                           final haru = data[index];
-                                          return HaruCard(haru: haru);
+                                          return HaruCard(
+                                            haru: haru,
+                                            isChecked: false,
+                                          );
                                         },
                                         separatorBuilder: (context, index) =>
                                             const SizedBox(
