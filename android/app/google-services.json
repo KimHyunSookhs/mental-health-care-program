@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1068238252185",
+    "project_id": "calmi-21168",
+    "storage_bucket": "calmi-21168.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068238252185:android:b59bbdb3f023e8b8917008",
+        "android_client_info": {
+          "package_name": "com.mentalhealthcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZTsoSlhW8FZl5BO-WeaNDwK-ZVqZmgYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

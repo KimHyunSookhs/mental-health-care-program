@@ -22,9 +22,7 @@ class _BottomNavigationBarScaffoldState
       case 0:
         context.go(Routes.haruScreen);
       case 1:
-        context.go(Routes.secretStoreScreen);
-      case 2:
-        context.go(Routes.splashScreen);
+        context.go(Routes.talkDocScreen);
     }
     setState(() {
       currentIndex = index;
@@ -50,8 +48,7 @@ class _BottomNavigationBarScaffoldState
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: '하루하루'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.storefront), label: '마음창고'),
-            BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'SS'),
+                icon: Icon(Icons.storefront), label: '토닥토닥'),
           ]),
     );
   }

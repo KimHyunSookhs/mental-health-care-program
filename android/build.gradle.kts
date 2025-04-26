@@ -5,7 +5,16 @@ allprojects {
     }
 }
 
+plugins {
+    id("com.android.application") apply false
+    id("org.jetbrains.kotlin.android") version "2.1.20" apply false
 
+    // Make sure that you have the Google services Gradle plugin
+    id("com.google.gms.google-services") apply false
+
+    // Add the Performance Monitoring Gradle plugin
+
+}
 val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
 rootProject.layout.buildDirectory.value(newBuildDir)
 
@@ -17,6 +26,6 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
-}
+//tasks.register<Delete>("clean") {
+//    delete(rootProject.layout.buildDirectory)
+//}

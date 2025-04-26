@@ -49,7 +49,7 @@ class SplashScreen extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    context.go(Routes.signUpScreen);
+                    context.go(Routes.signInScreen);
                   },
                   style: ButtonStyles.signInButton,
                   child: Text(

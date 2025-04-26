@@ -3,8 +3,10 @@ import 'package:mental_health_care/data/data_source/haru_data_source.dart';
 import 'package:mental_health_care/data/data_source/haru_data_source_impl.dart';
 import 'package:mental_health_care/data/repository/auth_repository_impl.dart';
 import 'package:mental_health_care/data/repository/haru_repository_impl.dart';
+import 'package:mental_health_care/data/repository/talk_doc_repository_impl.dart';
 import 'package:mental_health_care/domain/repository/auth_repository.dart';
 import 'package:mental_health_care/domain/repository/haru_repository.dart';
+import 'package:mental_health_care/domain/repository/talk_doc_repository.dart';
 import 'package:mental_health_care/domain/use_case/get_haru_use_case.dart';
 import 'package:mental_health_care/domain/use_case/random_pick_use_case.dart';
 import 'package:mental_health_care/domain/use_case/sign_in_use_case.dart';
@@ -23,7 +25,7 @@ void diSetUp() {
   getIt.registerSingleton<HaruRepository>(
       HaruRepositoryImpl(haruDataSource: getIt()));
   getIt.registerSingleton<AuthRepository>(AuthRepositoryImpl());
-
+  getIt.registerSingleton<TalkDocRepository>(TalkDocRepositoryImpl());
   //UseCase
   getIt.registerSingleton(GetHaruUseCase(haruRepository: getIt()));
   getIt.registerSingleton(RandomPickUseCase(haruRepository: getIt()));
