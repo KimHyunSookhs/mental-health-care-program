@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
-import 'package:mental_health_care/domain/repository/talk_doc_repository.dart'; // Import TalkDocRepository
+import 'package:mental_health_care/domain/repository/talk_doc_repository.dart';
 
-import 'ai_message.dart';
-import 'chat_message.dart';
-import 'human_message.dart';
+import 'message/ai_message.dart';
+import 'message/chat_message.dart';
+import 'message/human_message.dart';
 
 class TalkDocScreen extends StatefulWidget {
   final TalkDocRepository talkDocRepository;
@@ -35,7 +35,6 @@ class _TalkDocScreenState extends State<TalkDocScreen> {
     try {
       await widget.talkDocRepository
           .setSystemPrompt(widget.initialSystemPrompt);
-      // 필요하다면 초기 메시지를 추가할 수 있습니다.
       setState(() {
         _chatList
             .add(ChatMessage(message: "안녕하세요! 무엇을 도와드릴까요?", isHuman: false));
@@ -127,7 +126,7 @@ class _TalkDocScreenState extends State<TalkDocScreen> {
         color: ColorStyle.lightGrey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 16,
+            horizontal: 20,
             vertical: 32,
           ),
           child: Column(

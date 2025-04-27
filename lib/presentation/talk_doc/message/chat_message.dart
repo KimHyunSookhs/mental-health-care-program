@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_care/core/ui/color_style.dart';
 
 class ChatMessage extends StatelessWidget {
   const ChatMessage({
@@ -16,12 +17,14 @@ class ChatMessage extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Color.fromRGBO(250, 250, 250, 1.0),
+          color: isHuman
+              ? Color.fromRGBO(250, 250, 250, 1.0)
+              : ColorStyle.moreDarkGrey,
           borderRadius: BorderRadius.only(
-            topLeft: isHuman ? const Radius.circular(6) : Radius.zero,
-            topRight: isHuman ? Radius.zero : Radius.circular(6),
-            bottomLeft: Radius.circular(6),
-            bottomRight: Radius.circular(6),
+            topLeft: isHuman ? const Radius.circular(10) : Radius.zero,
+            topRight: isHuman ? Radius.zero : Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
           ),
         ),
         child: Text(
