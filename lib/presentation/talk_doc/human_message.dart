@@ -13,14 +13,17 @@ class HumanMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ChatMessage(
           isHuman: true,
           message: message,
         ),
-        const SizedBox(width: 16),
-        Icon(Icons.person),
+        const SizedBox(width: 12),
+        Icon(
+          Icons.person,
+          size: 30,
+        ),
       ],
     );
   }

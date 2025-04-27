@@ -10,14 +10,14 @@ class AiMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/images/chat.png',
+          'assets/images/talkdoc.jpg',
           width: 25,
           height: 25,
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 12),
         ChatMessage(
           isHuman: false,
           message: message,
