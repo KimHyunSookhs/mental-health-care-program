@@ -1,101 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
 import 'package:mental_health_care/domain/repository/talk_doc_repository.dart';
-import 'package:mental_health_care/presentation/talk_doc/talk_doc_screen_controller.dart';
+import 'package:mental_health_care/provider/talk_doc_providers.dart';
 
 import 'message/ai_message.dart';
 import 'message/human_message.dart';
 
-class TalkDocScreen extends StatefulWidget {
-  final TalkDocRepository talkDocRepository;
+class TalkDocScreen extends ConsumerStatefulWidget {
   final String initialSystemPrompt;
+  final TalkDocRepository talkDocRepository;
 
-  const TalkDocScreen(
-      {super.key,
-      required this.talkDocRepository,
-      required this.initialSystemPrompt});
+  const TalkDocScreen(this.talkDocRepository,
+      {super.key, required this.initialSystemPrompt});
 
   @override
-  State<TalkDocScreen> createState() => _TalkDocScreenState();
+  ConsumerState<TalkDocScreen> createState() => _TalkDocScreenState();
 }
 
-class _TalkDocScreenState extends State<TalkDocScreen> {
+class _TalkDocScreenState extends ConsumerState<TalkDocScreen> {
   final _chatController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-
-  // List<ChatMessage> _chatList = [];
-  // bool _isGenerating = false;
-  late TalkDocScreenController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = TalkDocScreenController(
-      talkDocRepository: widget.talkDocRepository,
-      chatController: _chatController,
-      scrollController: _scrollController,
-      setStateCallback: setState,
-    );
-    _controller.initializeChatBot(widget.initialSystemPrompt).catchError((e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$e')),
-      );
+    Future.microtask(() {
+      final notifier = ref.read(talkDocScreenProvider.notifier);
+      if (notifier.state.chatList.isEmpty) {
+        notifier.initializeChatBot(widget.initialSystemPrompt);
+      }
+      notifier.scrollController = _scrollController;
     });
   }
 
-  // Future<void> _initializeChatBot() async {
-  //   try {
-  //     await widget.talkDocRepository
-  //         .setSystemPrompt(widget.initialSystemPrompt);
-  //     setState(() {
-  //       _chatList
-  //           .add(ChatMessage(message: "안녕하세요! 무엇을 도와드릴까요?", isHuman: false));
-  //     });
-  //   } catch (e) {
-  //     // 시스템 프롬프트 설정 실패 시 오류 처리
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(content: Text('챗봇 초기화에 실패했습니다: $e')),
-  //     );
-  //   }
-  // }
-  //
-  // void _handleNewChat(String newMessage) async {
-  //   if (newMessage.trim().isNotEmpty) {
-  //     setState(() {
-  //       _chatList.add(ChatMessage(message: newMessage, isHuman: true));
-  //       _chatController.clear();
-  //       _isGenerating = true;
-  //     });
-  //
-  //     try {
-  //       await for (final response
-  //           in widget.talkDocRepository.sendMessage(newMessage)) {
-  //         setState(() {
-  //           _chatList.add(ChatMessage(message: response, isHuman: false));
-  //           _isGenerating = false;
-  //         });
-  //       }
-  //     } catch (e) {
-  //       setState(() {
-  //         _chatList.add(
-  //             ChatMessage(message: '응답을 받는 동안 오류가 발생했습니다: $e', isHuman: false));
-  //         _isGenerating = false;
-  //       });
-  //     } finally {
-  //       // 메시지 전송 후 스크롤 아래로 이동
-  //       WidgetsBinding.instance.addPostFrameCallback((_) {
-  //         _scrollController.animateTo(
-  //           _scrollController.position.maxScrollExtent,
-  //           duration: const Duration(milliseconds: 300),
-  //           curve: Curves.easeInOut,
-  //         );
-  //       });
-  //     }
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(talkDocScreenProvider);
+    final notifier = ref.read(talkDocScreenProvider.notifier);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -148,15 +90,18 @@ class _TalkDocScreenState extends State<TalkDocScreen> {
                 child: ListView.separated(
                   controller: _scrollController,
                   itemBuilder: (context, index) {
-                    final message = _controller.chatList[index];
+                    final message = state.chatList[index];
                     return message.isHuman
                         ? HumanMessage(message: message.message)
                         : AiMessage(message: message.message);
                   },
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 24),
-                  itemCount: _controller.chatList.length,
+                  itemCount: state.chatList.length,
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Row(
                 children: [
@@ -182,13 +127,18 @@ class _TalkDocScreenState extends State<TalkDocScreen> {
                         ),
                         hintText: '메세지를 입력하세요...',
                       ),
-                      onSubmitted: _controller.handleNewChat,
+                      onSubmitted: (text) {
+                        notifier.handleNewChat(text);
+                        _chatController.clear();
+                      },
                     ),
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    onPressed: () =>
-                        _controller.handleNewChat(_chatController.text),
+                    onPressed: () {
+                      notifier.handleNewChat(_chatController.text);
+                      _chatController.clear();
+                    },
                     icon: const Icon(Icons.send),
                   ),
                 ],

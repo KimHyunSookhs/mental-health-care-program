@@ -48,10 +48,8 @@ final router = GoRouter(
                   // initialSystemPrompt가 해당 스코프에서 접근 가능하다고 가정합니다.
                   const initialSystemPrompt =
                       "당신은 친절하고 공감 능력이 뛰어난 심리 상담사입니다. 사용자의 감정에 깊이 공감하며, 따뜻하고 편안한 어투로 답변해주세요.";
-                  return TalkDocScreen(
-                    talkDocRepository: getIt(),
-                    initialSystemPrompt: initialSystemPrompt,
-                  );
+                  return TalkDocScreen(getIt(),
+                      initialSystemPrompt: initialSystemPrompt);
                 },
               ),
               GoRoute(
