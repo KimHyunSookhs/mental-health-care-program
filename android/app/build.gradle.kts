@@ -30,7 +30,7 @@ android {
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23
         targetSdk = 34
-        versionCode = 4
+        versionCode = 5
         versionName = "1.0.3"
     }
 

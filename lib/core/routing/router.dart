@@ -50,7 +50,6 @@ final router = GoRouter(
                       "당신은 친절하고 공감 능력이 뛰어난 심리 상담사입니다. 사용자의 감정에 깊이 공감하며, 따뜻하고 편안한 어투로 답변해주세요.";
                   return TalkDocScreen(
                     talkDocRepository: getIt(),
-                    // TalkDocRepository 타입으로 getIt에서 인스턴스를 가져옵니다.
                     initialSystemPrompt: initialSystemPrompt,
                   );
                 },
