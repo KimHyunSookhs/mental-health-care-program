@@ -15,7 +15,7 @@ class TalkDocRepositoryImpl implements TalkDocRepository {
       apiKey: apiKey,
     );
   }
-  
+
   @override
   Future<void> setSystemPrompt(String prompt) async {
     _chatSession = _model.startChat(history: [
