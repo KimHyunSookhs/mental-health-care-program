@@ -17,7 +17,6 @@ class TalkDocRepositoryImpl implements TalkDocRepository {
   }
 
   @override
-  @override
   Future<void> setSystemPrompt(String prompt) async {
     _chatSession = _model.startChat(history: [
       Content.model([TextPart(prompt)]), // 첫 번째 메시지로 시스템 프롬프트 전달
