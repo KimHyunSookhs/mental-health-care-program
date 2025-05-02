@@ -8,9 +8,9 @@ import '../../core/validation/validation_form.dart';
 import '../component/button_styles.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInViewModel viewModel;
+  final SignInViewModel viewModel;
 
-  SignInScreen({super.key, required this.viewModel});
+  const SignInScreen({super.key, required this.viewModel});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
