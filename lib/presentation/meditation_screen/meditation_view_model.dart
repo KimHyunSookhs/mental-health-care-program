@@ -48,7 +48,7 @@ class MeditationViewModel with ChangeNotifier {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
     try {
-      final result = await _repository.getYouTubeCategory(category);
+      final result = await _useCase.execute(category);
       switch (result) {
         case Success(data: final youtube):
           _state = state.copyWith(

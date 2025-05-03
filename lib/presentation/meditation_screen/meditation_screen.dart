@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
+import 'package:mental_health_care/data/model/you_tube.dart';
 import 'package:mental_health_care/presentation/component/you_tube_card.dart';
 import 'package:mental_health_care/presentation/meditation_screen/meditation_view_model.dart';
 
 import '../../core/result/result.dart';
 import '../../core/ui/button_style.dart';
+import '../component/mini_you_tube_card.dart';
 
 class MeditationScreen extends StatefulWidget {
   final MeditationViewModel viewModel;
@@ -120,6 +122,8 @@ class _MeditationScreenState extends State<MeditationScreen> {
                           _buildTabButton('ASMR', SelectedTab.asmr)
                         ],
                       ),
+                      const SizedBox(height: 15),
+                      _buildYouTubeList(data),
                     ],
                   ),
                 Error(:final e) => Center(
@@ -143,11 +147,44 @@ class _MeditationScreenState extends State<MeditationScreen> {
         setState(() {
           _selectedTab = tab;
         });
+        final category = switch (tab) {
+          SelectedTab.all => 'all',
+          SelectedTab.meditation => '명상',
+          SelectedTab.asmr => 'ASMR',
+        };
+        widget.viewModel.getYouTubeCategory(category);
       },
       child: Text(title,
           style: isSelected
               ? TextStyle(color: Colors.white, fontSize: 14)
               : TextStyle(color: Colors.black, fontSize: 14)),
+    );
+  }
+
+  Widget _buildYouTubeList(List<YouTube> list) {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: list.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 10),
+      itemBuilder: (context, index) {
+        final youtube = list[index];
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MiniYouTubeCard(youTube: youtube),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
