@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
 import 'package:mental_health_care/domain/repository/talk_doc_repository.dart';
-import 'package:mental_health_care/provider/talk_doc_providers.dart';
 
 import 'message/ai_message.dart';
 import 'message/human_message.dart';
+import 'provider/talk_doc_providers.dart';
 
 class TalkDocScreen extends ConsumerStatefulWidget {
   final String initialSystemPrompt;

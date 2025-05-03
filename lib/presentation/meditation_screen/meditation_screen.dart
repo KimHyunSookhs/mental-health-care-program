@@ -4,6 +4,7 @@ import 'package:mental_health_care/presentation/component/you_tube_card.dart';
 import 'package:mental_health_care/presentation/meditation_screen/meditation_view_model.dart';
 
 import '../../core/result/result.dart';
+import '../../core/ui/button_style.dart';
 
 class MeditationScreen extends StatefulWidget {
   final MeditationViewModel viewModel;
@@ -14,7 +15,11 @@ class MeditationScreen extends StatefulWidget {
   State<MeditationScreen> createState() => _MeditationScreenState();
 }
 
+enum SelectedTab { all, meditation, asmr }
+
 class _MeditationScreenState extends State<MeditationScreen> {
+  SelectedTab _selectedTab = SelectedTab.all;
+
   @override
   void initState() {
     super.initState();
@@ -51,7 +56,70 @@ class _MeditationScreenState extends State<MeditationScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      YouTubeCard(youTube: youTube.data.first)
+                      Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                YouTubeCard(
+                                  youTube: youTube.data.first,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  youTube.data.first.title,
+                                  textAlign: TextAlign.start,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${youTube.data.first.duration.toString()}분',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          color: ColorStyle.darkerGrey),
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Icon(
+                                      Icons.circle,
+                                      size: 7,
+                                      color: ColorStyle.darkerGrey,
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Text(
+                                      youTube.data.first.category,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          color: ColorStyle.darkerGrey),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _buildTabButton('전체', SelectedTab.all),
+                          _buildTabButton('명상', SelectedTab.meditation),
+                          _buildTabButton('ASMR', SelectedTab.asmr)
+                        ],
+                      ),
                     ],
                   ),
                 Error(:final e) => Center(
@@ -62,6 +130,24 @@ class _MeditationScreenState extends State<MeditationScreen> {
           );
         },
       )),
+    );
+  }
+
+  Widget _buildTabButton(String title, SelectedTab tab) {
+    final bool isSelected = _selectedTab == tab;
+    return ElevatedButton(
+      style: isSelected
+          ? ButtonStyles.selectedButton
+          : ButtonStyles.unSelectedButton,
+      onPressed: () {
+        setState(() {
+          _selectedTab = tab;
+        });
+      },
+      child: Text(title,
+          style: isSelected
+              ? TextStyle(color: Colors.white, fontSize: 14)
+              : TextStyle(color: Colors.black, fontSize: 14)),
     );
   }
 }

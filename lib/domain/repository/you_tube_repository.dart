@@ -4,4 +4,6 @@ import '../../core/result/result.dart';
 
 abstract class YouTubeRepository {
   Future<Result<List<YouTube>>> getYouTube();
+
+  Future<Result<List<YouTube>>> getYouTubeCategory(String category);
 }

@@ -18,4 +18,19 @@ class YouTubeRepositoryImpl implements YouTubeRepository {
       return Result.error(e.toString());
     }
   }
+
+  @override
+  Future<Result<List<YouTube>>> getYouTubeCategory(String category) async {
+    final List<YouTube> youTube = await _dataSource.getYouTube();
+    try {
+      if (category.toLowerCase() == 'all') {
+        return Result.success(youTube);
+      }
+      final categoryYouTube =
+          youTube.where((e) => e.category == category).toList();
+      return Result.success(categoryYouTube);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
 }

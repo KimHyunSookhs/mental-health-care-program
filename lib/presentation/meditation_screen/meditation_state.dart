@@ -11,5 +11,6 @@ abstract class MeditationState with _$MeditationState {
     @Default(Result<List<YouTube>>.success([])) Result<List<YouTube>> youtube,
     @Default(false) bool isLoading,
     @Default('') String errorMessage,
+    @Default('All') String category,
   }) = _MeditationState;
 }

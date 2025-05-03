@@ -5,7 +5,7 @@ import 'package:mental_health_care/core/ui/color_style.dart';
 import 'package:mental_health_care/core/validation/validation_form.dart';
 import 'package:mental_health_care/presentation/signup_screen/sign_up_view_model.dart';
 
-import '../component/button_styles.dart';
+import '../../core/ui/button_style.dart';
 
 class SignupScreen extends StatefulWidget {
   final SignUpViewModel viewModel;
