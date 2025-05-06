@@ -25,7 +25,6 @@ class HaruViewModel with ChangeNotifier {
               isLoading: false, haru: Result.success(haru), errorMessage: '');
           break;
         case Error(e: final e):
-          print('에러 발생: $e');
           _state = state.copyWith(
               isLoading: false,
               haru: Result.error(e),
@@ -33,7 +32,6 @@ class HaruViewModel with ChangeNotifier {
           break;
       }
     } catch (e) {
-      print('예외 발생: $e');
       throw Exception(e);
     }
     notifyListeners();
