@@ -25,7 +25,7 @@ class _HaruScreenState extends State<HaruScreen> {
   @override
   void initState() {
     super.initState();
-    widget.viewModel.pickHaru().then((_) {
+    widget.viewModel.loadOrCreateHaruList().then((_) {
       final result = widget.viewModel.state.haru;
       if (result is Success<List<Haru>>) {
         setState(() {
