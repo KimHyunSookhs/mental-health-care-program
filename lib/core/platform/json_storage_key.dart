@@ -1,4 +1,4 @@
-enum JsonStorageKey { haru }
+enum JsonStorageKey { haru, youtube }
 
 extension JsonStorageKeyExt on JsonStorageKey {
   String get fileName => '${name}.json'; //예 : haru.json

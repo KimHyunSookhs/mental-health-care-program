@@ -10,13 +10,8 @@ class GetHaruUseCase {
   Future<Result<List<Haru>>> execute() async {
     final haruResult = await haruRepository.getHaru();
 
-    if (haruResult case Error(:final e)) {
-      return Result.error(e);
-    }
-    final haru = (haruResult as Success).data;
-
     return switch (haruResult) {
-      Success() => Result.success(haru),
+      Success(:final data) => Result.success(data),
       Error(:final e) => Result.error(e),
     };
   }

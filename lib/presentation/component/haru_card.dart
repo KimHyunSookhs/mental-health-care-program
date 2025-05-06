@@ -6,8 +6,6 @@ class HaruCard extends StatefulWidget {
   final Haru haru;
   bool isChecked;
 
-  // final VoidCallback completeMission;
-
   @override
   State<HaruCard> createState() => _HaruCardState();
 

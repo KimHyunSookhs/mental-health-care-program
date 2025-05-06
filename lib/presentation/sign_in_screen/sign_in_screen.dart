@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:mental_health_care/presentation/sign_in_screen/sign_in_view_model.dart';
 
 import '../../core/routing/routes.dart';
+import '../../core/ui/button_style.dart';
 import '../../core/ui/color_style.dart';
 import '../../core/validation/validation_form.dart';
-import '../component/button_styles.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInViewModel viewModel;
+  final SignInViewModel viewModel;
 
-  SignInScreen({super.key, required this.viewModel});
+  const SignInScreen({super.key, required this.viewModel});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();

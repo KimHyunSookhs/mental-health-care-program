@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mental_health_care/presentation/component/button_styles.dart';
 
 import '../../core/routing/routes.dart';
+import '../../core/ui/button_style.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

@@ -5,4 +5,5 @@ abstract class Routes {
   static const String splashScreen = '/splash-screen';
   static const String signUpScreen = '/sign-up-screen';
   static const String signInScreen = '/sign-in-screen';
+  static const String meditationScreen = '/meditation-screen';
 }

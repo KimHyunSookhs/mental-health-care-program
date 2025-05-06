@@ -15,14 +15,14 @@ class HaruDataSourceImpl implements HaruDataSource {
       final loaded = await JsonStorage.load(JsonStorageKey.haru);
       final json = loaded ?? await _loadFromAssets();
       if (json == null || json['haru'] is! List) {
-        throw Exception('recipes.json 형식 오류 또는 데이터 없음');
+        throw Exception('haru.json 형식 오류 또는 데이터 없음');
       }
       final list = json['haru'] as List;
       return list
           .map((e) => HaruDto.fromJson(Map<String, dynamic>.from(e)))
           .toList();
     } catch (e) {
-      throw Exception('recipes.json 로드 실패 $e');
+      throw Exception('haru.json 로드 실패 $e');
     }
   }
 
