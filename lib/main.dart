@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mental_health_care/core/di/di_setup.dart';
-import 'package:mental_health_care/core/firebase/firebase_options.dart';
+import 'package:mental_health_care/firebase_options.dart';
 
 import 'core/routing/router.dart';
 

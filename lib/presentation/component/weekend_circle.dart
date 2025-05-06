@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
 
@@ -9,6 +10,8 @@ class WeekendCircle extends StatefulWidget {
 }
 
 class _WeekendCircleState extends State<WeekendCircle> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   List<String> days = ['월', '화', '수', '목', '금', '토', '일'];
   List<bool> isCompletedList =
       List.generate(7, (index) => false); // 요일별 완료 상태 저장
