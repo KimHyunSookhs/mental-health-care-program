@@ -1,46 +1,55 @@
 {
   "haru": [
     {
+      "id": 1,
       "timeOfDay": "아침",
       "content": "침구류 정리",
       "isChecked": false
     },
     {
+      "id": 2,
       "timeOfDay": "아침",
       "content": "따듯한 물 한 잔 마시기",
       "isChecked": false
     },
     {
+      "id": 3,
       "timeOfDay": "아침",
       "content": "창문 열고 커튼 치기",
       "isChecked": false
     },
     {
+      "id": 4,
       "timeOfDay": "점심",
       "content": "좋아하는 간식 챙겨 먹어보기",
       "isChecked": false
     },
     {
+      "id": 5,
       "timeOfDay": "점심",
       "content": "긍정문장 따라 말하기",
       "isChecked": false
     },
     {
+      "id": 6,
       "timeOfDay": "점심",
       "content": "산책하며 좋아하는 음악 듣기",
       "isChecked": false
     },
     {
+      "id": 7,
       "timeOfDay": "저녁",
       "content": "감사했던 일 작성하기",
       "isChecked": false
     },
     {
+      "id": 8,
       "timeOfDay": "저녁",
       "content": "따듯한 차나 우유 한 잔 마시기",
       "isChecked": false
     },
     {
+      "id": 9,
       "timeOfDay": "저녁",
       "content": "5~10분 정도 명상하기",
       "isChecked": false

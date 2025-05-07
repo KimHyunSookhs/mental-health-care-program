@@ -29,10 +29,6 @@ class _YouTubeCardState extends State<YouTubeCard> {
     return Center(
       child: YoutubePlayer(
         controller: _controller,
-        // showVideoProgressIndicator: true,
-        onReady: () {
-          print('Player is ready.');
-        },
       ),
     );
   }

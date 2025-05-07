@@ -11,7 +11,6 @@ import 'package:mental_health_care/domain/repository/auth_repository.dart';
 import 'package:mental_health_care/domain/repository/haru_repository.dart';
 import 'package:mental_health_care/domain/repository/talk_doc_repository.dart';
 import 'package:mental_health_care/domain/repository/you_tube_repository.dart';
-import 'package:mental_health_care/domain/use_case/get_haru_use_case.dart';
 import 'package:mental_health_care/domain/use_case/get_you_tube_category_use_case.dart';
 import 'package:mental_health_care/domain/use_case/random_pick_use_case.dart';
 import 'package:mental_health_care/domain/use_case/sign_in_use_case.dart';
@@ -36,7 +35,6 @@ void diSetUp() {
   getIt.registerSingleton<YouTubeRepository>(
       YouTubeRepositoryImpl(dataSource: getIt()));
   //UseCase
-  getIt.registerSingleton(GetHaruUseCase(haruRepository: getIt()));
   getIt.registerSingleton(RandomPickUseCase(haruRepository: getIt()));
   getIt.registerSingleton(SignupUseCase(authRepository: getIt()));
   getIt.registerSingleton(SignInUseCase(authRepository: getIt()));

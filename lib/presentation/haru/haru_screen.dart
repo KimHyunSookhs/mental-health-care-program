@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mental_health_care/core/result/result.dart';
@@ -5,6 +6,8 @@ import 'package:mental_health_care/core/ui/color_style.dart';
 import 'package:mental_health_care/presentation/component/haru_card.dart';
 import 'package:mental_health_care/presentation/component/weekend_circle.dart';
 import 'package:mental_health_care/presentation/haru/haru_view_model.dart';
+
+import '../../data/model/haru.dart';
 
 class HaruScreen extends StatefulWidget {
   final HaruViewModel viewModel;
@@ -16,10 +19,20 @@ class HaruScreen extends StatefulWidget {
 }
 
 class _HaruScreenState extends State<HaruScreen> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  List<Haru> _haruList = [];
+
   @override
   void initState() {
     super.initState();
-    widget.viewModel.pickHaru();
+    widget.viewModel.loadOrCreateHaruList().then((_) {
+      final result = widget.viewModel.state.haru;
+      if (result is Success<List<Haru>>) {
+        setState(() {
+          _haruList = result.data;
+        });
+      }
+    });
   }
 
   @override
@@ -91,7 +104,18 @@ class _HaruScreenState extends State<HaruScreen> {
                                           final haru = data[index];
                                           return HaruCard(
                                             haru: haru,
-                                            isChecked: false,
+                                            isChecked: haru.isChecked,
+                                            onChanged: (bool? value) {
+                                              setState(() {
+                                                _haruList[index] =
+                                                    haru.copyWith(
+                                                        isChecked:
+                                                            value ?? false);
+                                              });
+                                              widget.viewModel
+                                                  .saveHaruListToFirestore(
+                                                      _haruList);
+                                            },
                                           );
                                         },
                                         separatorBuilder: (context, index) =>

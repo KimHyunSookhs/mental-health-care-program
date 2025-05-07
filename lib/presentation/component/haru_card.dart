@@ -2,21 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
 import 'package:mental_health_care/data/model/haru.dart';
 
-class HaruCard extends StatefulWidget {
+class HaruCard extends StatelessWidget {
   final Haru haru;
   bool isChecked;
+  final ValueChanged<bool?> onChanged;
 
-  @override
-  State<HaruCard> createState() => _HaruCardState();
-
-  HaruCard({
-    super.key,
-    required this.haru,
-    required this.isChecked,
-  });
-}
-
-class _HaruCardState extends State<HaruCard> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,12 +22,8 @@ class _HaruCardState extends State<HaruCard> {
             child: Row(
               children: [
                 Checkbox(
-                  value: widget.isChecked,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      widget.isChecked = value!;
-                    });
-                  },
+                  value: isChecked,
+                  onChanged: onChanged,
                   activeColor: Colors.black38,
                   side: BorderSide(color: Colors.black),
                   checkColor: Colors.white,
@@ -47,13 +33,13 @@ class _HaruCardState extends State<HaruCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.haru.content,
+                        haru.content,
                         maxLines: 2,
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        widget.haru.timeOfDay,
+                        haru.timeOfDay,
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.w300),
                       )
@@ -67,4 +53,11 @@ class _HaruCardState extends State<HaruCard> {
       ],
     );
   }
+
+  HaruCard({
+    super.key,
+    required this.haru,
+    required this.isChecked,
+    required this.onChanged,
+  });
 }
