@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mental_health_care/core/ui/color_style.dart';
 
 class WeekendCircle extends StatefulWidget {
@@ -10,14 +12,57 @@ class WeekendCircle extends StatefulWidget {
 }
 
 class _WeekendCircleState extends State<WeekendCircle> {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   List<String> days = ['월', '화', '수', '목', '금', '토', '일'];
   List<bool> isCompletedList =
       List.generate(7, (index) => false); // 요일별 완료 상태 저장
 
   int getTodayIndex() {
     return DateTime.now().weekday - 1; // 월:1~일:7 이므로 -1
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCompletionStatus();
+  }
+
+  Future<void> _loadCompletionStatus() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw Exception('로그인된 사용자가 없습니다.');
+    }
+
+    final userEmail = user.email ?? 'unknown';
+    final today = DateTime.now();
+    final todayStr = DateFormat('yyyy-MM-dd').format(today);
+
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEmail)
+        .collection('WeekList')
+        .doc(todayStr)
+        .get();
+
+    if (doc.exists) {
+      setState(() {
+        isCompletedList[getTodayIndex()] = true;
+      });
+    }
+  }
+
+  Future<void> _saveTodayToFirestore() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final userEmail = user.email ?? 'unknown';
+    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEmail)
+        .collection('WeekList')
+        .doc(today)
+        .set({'items': today});
   }
 
   @override
@@ -73,11 +118,12 @@ class _WeekendCircleState extends State<WeekendCircle> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             side: BorderSide(color: Colors.black38)),
-        onPressed: () {
+        onPressed: () async {
           setState(() {
             int todayIndex = getTodayIndex();
             isCompletedList[todayIndex] = !isCompletedList[todayIndex];
           });
+          await _saveTodayToFirestore();
         },
         child: Text(
           '하루 완료',
