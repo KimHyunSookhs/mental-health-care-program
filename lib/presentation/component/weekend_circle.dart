@@ -20,6 +20,12 @@ class _WeekendCircleState extends State<WeekendCircle> {
     return DateTime.now().weekday - 1; // 월:1~일:7 이므로 -1
   }
 
+  List<DateTime> getThisWeekDates() {
+    final now = DateTime.now();
+    final startOfWeek = now.subtract(Duration(days: now.weekday - 1)); // 월요일
+    return List.generate(7, (index) => startOfWeek.add(Duration(days: index)));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -28,26 +34,30 @@ class _WeekendCircleState extends State<WeekendCircle> {
 
   Future<void> _loadCompletionStatus() async {
     final user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
-      throw Exception('로그인된 사용자가 없습니다.');
-    }
+    if (user == null) throw Exception('로그인된 사용자가 없습니다.');
 
     final userEmail = user.email ?? 'unknown';
-    final today = DateTime.now();
-    final todayStr = DateFormat('yyyy-MM-dd').format(today);
+    final weekDates = getThisWeekDates();
 
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userEmail)
-        .collection('WeekList')
-        .doc(todayStr)
-        .get();
+    List<bool> updatedStatus = List.generate(7, (index) => false);
 
-    if (doc.exists) {
-      setState(() {
-        isCompletedList[getTodayIndex()] = true;
-      });
+    for (int i = 0; i < 7; i++) {
+      final dayStr = DateFormat('yyyy-MM-dd').format(weekDates[i]);
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userEmail)
+          .collection('WeekList')
+          .doc(dayStr)
+          .get();
+
+      if (doc.exists) {
+        updatedStatus[i] = true;
+      }
     }
+
+    setState(() {
+      isCompletedList = updatedStatus;
+    });
   }
 
   Future<void> _saveTodayToFirestore() async {
