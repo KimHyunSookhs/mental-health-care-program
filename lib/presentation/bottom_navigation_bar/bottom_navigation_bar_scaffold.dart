@@ -50,8 +50,9 @@ class _BottomNavigationBarScaffoldState
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: '하루하루'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.storefront), label: '토닥토닥'),
-            BottomNavigationBarItem(icon: Icon(Icons.spa), label: '명상'),
+                icon: Icon(Icons.volunteer_activism_outlined), label: '토닥토닥'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.spa_outlined), label: '명상'),
           ]),
     );
   }
