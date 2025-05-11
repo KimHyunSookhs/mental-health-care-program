@@ -18,7 +18,7 @@
 
 firebase에 하루하루 챌린지를 저장하고 한주의 실천률을 볼 수 있도록 함
 
-![image](https://github.com/user-attachments/assets/203ffd6c-6d6c-462a-a5fa-f83badca7138)
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/1bdf0008-e216-4c30-a2f4-36e6576e8d92)
 
 google_generative_ai 패키지를 활용하여 Gemini를 모델과 Riverpod으로 상태관리를 통해 고민상담 및 위로를 해주는 챗 봇(토닥토닥)생성
 
