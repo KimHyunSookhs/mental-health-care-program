@@ -30,6 +30,31 @@ class _SignInScreenState extends State<SignInScreen> {
   final FocusNode _passwordFocus = FocusNode();
 
   @override
+  void initState() {
+    super.initState();
+    _loadCredentials();
+  }
+
+  Future<void> _loadCredentials() async {
+    await widget.viewModel.loadStoredCredentials();
+    if (mounted) {
+      _emailController.text = widget.viewModel.email ?? '';
+      _passwordController.text = widget.viewModel.password ?? '';
+    }
+  }
+
+  void _handleLogin() async {
+    final email = _emailController.text;
+    final password = _passwordController.text;
+
+    await widget.viewModel.signIn(email, password);
+
+    if (widget.viewModel.error == null && mounted) {
+      context.go(Routes.haruScreen);
+    }
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _emailController.dispose();
@@ -121,9 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             style: ButtonStyles.signInButton,
                             onPressed: () {
                               if (_formKey.currentState?.validate() ?? false) {
-                                widget.viewModel.signIn(_emailController.text,
-                                    _passwordController.text);
-                                context.go(Routes.haruScreen);
+                                _handleLogin();
                               }
                             },
                             child: Text(

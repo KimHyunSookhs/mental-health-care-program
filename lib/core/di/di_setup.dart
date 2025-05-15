@@ -11,6 +11,7 @@ import 'package:mental_health_care/domain/repository/auth_repository.dart';
 import 'package:mental_health_care/domain/repository/haru_repository.dart';
 import 'package:mental_health_care/domain/repository/talk_doc_repository.dart';
 import 'package:mental_health_care/domain/repository/you_tube_repository.dart';
+import 'package:mental_health_care/domain/use_case/auto_sign_in_use_case.dart';
 import 'package:mental_health_care/domain/use_case/get_you_tube_category_use_case.dart';
 import 'package:mental_health_care/domain/use_case/random_pick_use_case.dart';
 import 'package:mental_health_care/domain/use_case/sign_in_use_case.dart';
@@ -38,6 +39,7 @@ void diSetUp() {
   getIt.registerSingleton(RandomPickUseCase(haruRepository: getIt()));
   getIt.registerSingleton(SignupUseCase(authRepository: getIt()));
   getIt.registerSingleton(SignInUseCase(authRepository: getIt()));
+  getIt.registerSingleton(AutoSignInUseCase(authRepository: getIt()));
   getIt.registerSingleton(GetYouTubeCategoryUseCase(repository: getIt()));
 
   //ViewModel
@@ -46,7 +48,7 @@ void diSetUp() {
   getIt.registerFactory<SignUpViewModel>(
       () => SignUpViewModel(signupUseCase: getIt()));
   getIt.registerFactory<SignInViewModel>(
-      () => SignInViewModel(useCase: getIt()));
+      () => SignInViewModel(useCase: getIt(), autoSignInUseCase: getIt()));
   getIt.registerFactory<MeditationViewModel>(() => MeditationViewModel(
         repository: getIt(),
         useCase: getIt(),

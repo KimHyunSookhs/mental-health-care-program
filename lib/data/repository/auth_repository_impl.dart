@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mental_health_care/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final storage = FlutterSecureStorage();
 
   @override
   Future<User?> signUp(String email, String password, String nickname) async {
     try {
       UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -34,6 +36,8 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      await storage.write(key: 'email', value: email);
+      await storage.write(key: 'password', value: password);
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       String message;
@@ -54,4 +58,12 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> signOut() async {
     _auth.signOut();
   }
+
+  @override
+  Future<Map<String, String?>> getStoredCredentials() async {
+    final email = await storage.read(key: 'email');
+    final password = await storage.read(key: 'password');
+    return {'email': email, 'password': password};
+  }
+
 }
