@@ -7,11 +7,13 @@
 ![image](https://github.com/user-attachments/assets/1c268341-2bd4-4e98-b4eb-943826689158)
 ![image](https://github.com/user-attachments/assets/cc58fb0f-1b93-4206-b010-0519242ac7c6)
 
-| SplashScreen                                                                              | 회원가입                                                                                      |
-|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| ![image](https://github.com/user-attachments/assets/e981a6d2-0611-4b7c-a214-a2cc84330269) | ![image](https://github.com/user-attachments/assets/f832fcc2-9404-4aec-950d-f9bda8ffcbd8) |
+| SplashScreen                                                                              | 회원가입                                                                                      | 로그인|
+|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-------|
+| ![image](https://github.com/user-attachments/assets/e981a6d2-0611-4b7c-a214-a2cc84330269) | ![image](https://github.com/user-attachments/assets/f832fcc2-9404-4aec-950d-f9bda8ffcbd8) |![image](https://github.com/user-attachments/assets/91dda2cd-15ab-498b-af6a-b31553d09015)|
 
 스플래쉬 스크린 활용 및 회원가입시 유효성 검사를 통해 회원가입과 로그인을 진행하도록 함
+
+flutter_secure_storage 패키지를 사용해 로그인된 사용자의 이메일과 비밀번호를 안전하게 저장하고, 자동로그인 기능 제공
 
 ![image](https://github.com/user-attachments/assets/82f73be2-e17e-4403-a2bf-5fef70f24bfb)
 
