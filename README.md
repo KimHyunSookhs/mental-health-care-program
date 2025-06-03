@@ -47,3 +47,6 @@ google_generative_ai 패키지를 활용하여 Gemini를 모델로 사용하고 
 ![image](https://github.com/user-attachments/assets/43e4759b-509d-490b-8c90-3d11a4758d3f)
 
 명상 탭을 활용해 명상과 ASMR 같이 듣기 좋은 여러 유튜브 공유
+
+### 구글 플레이 스토어 다운로드 주소
+https://play.google.com/store/apps/details?id=com.mentalhealthcare
