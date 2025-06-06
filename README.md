@@ -5,7 +5,8 @@
 ![image](https://github.com/user-attachments/assets/01f8d737-a002-4ab7-bedd-d2b6e6fda01f)
 ![image](https://github.com/user-attachments/assets/74004a93-15d1-4656-8470-febc2e864fa3)
 ![image](https://github.com/user-attachments/assets/089e3f42-e32b-4d78-9eab-50bc6519ecc8)
-![image](https://github.com/user-attachments/assets/cc58fb0f-1b93-4206-b010-0519242ac7c6)
+![image](https://github.com/user-attachments/assets/ee03b82e-94f5-4e7d-9dbf-8b9190579a10)
+
 
 | SplashScreen                                                                              | 회원가입                                                                                      | 로그인|
 |-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-------|
